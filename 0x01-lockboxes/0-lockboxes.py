@@ -2,24 +2,19 @@
 """
 A module that implements lockboxes
 """
-
-
 def canUnlockAll(boxes):
-    """
-    Using stacks to implement the lockboxes
-    """
-    if len(boxes) == 0:
-        return None
-    stack = [0]
-    visited = set([])
+    unlocked = [False] * len(boxes)
+    unlocked[0] = True
+    keys = [0]
+    
+    while keys:
+        box_index = keys.pop()
+        for key in boxes[box_index]:
+            if key >= len(boxes):
+                continue
+            if not unlocked[key]:
+                unlocked[key] = True
+                keys.append(key)
+    
+    return all(unlocked)
 
-    while len(stack) > 0:
-        current = stack.pop()
-        if current not in visited:
-            stack.extend(boxes[current])
-            visited.add(current)
-    n = len(boxes)
-    for i in range(n):
-        if i not in visited:
-            return False
-    return True
