@@ -1,11 +1,25 @@
+#!/usr/bin/python3
+"""
+A module that implements lockboxes
+"""
+
+
 def canUnlockAll(boxes):
-    unlocked = [0]
-    for box_id, box in enumerate(boxes):
-        if not box:
-            continue
-        for key in box:
-            if key < len(boxes) and key not in unlocked and key != box_id:
-                unlocked.append(key)
-    if len(unlocked) == len(boxes):
-        return True
-    return False
+    """
+    Using stacks to implement the lockboxes
+    """
+    if len(boxes) == 0:
+        return None
+    stack = [0]
+    visited = set([])
+
+    while len(stack) > 0:
+        current = stack.pop()
+        if current not in visited:
+            stack.extend(boxes[current])
+            visited.add(current)
+    n = len(boxes)
+    for i in range(n):
+        if i not in visited:
+            return False
+    return True
