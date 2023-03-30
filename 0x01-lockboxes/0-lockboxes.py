@@ -1,20 +1,32 @@
 #!/usr/bin/python3
-"""
-A module that implements lockboxes
-"""
-def canUnlockAll(boxes):
-    unlocked = [False] * len(boxes)
-    unlocked[0] = True
-    keys = [0]
-    
-    while keys:
-        box_index = keys.pop()
-        for key in boxes[box_index]:
-            if key >= len(boxes):
-                continue
-            if not unlocked[key]:
-                unlocked[key] = True
-                keys.append(key)
-    
-    return all(unlocked)
+'''LockBoxes Challenge'''
 
+
+def canUnlockAll(boxes):
+    '''determines if all the boxes can be opened or not
+    Returns:
+        True: all boxes can be opened
+        False: not all boxes can be opened
+    '''
+    length = len(boxes)
+    keys = set()
+    opened_boxes = []
+    i = 0
+
+    while i < length:
+        oldi = i
+        opened_boxes.append(i)
+        keys.update(boxes[i])
+        for key in keys:
+            if key != 0 and key < length and key not in opened_boxes:
+                i = key
+                break
+        if oldi != i:
+            continue
+        else:
+            break
+
+    for i in range(length):
+        if i not in opened_boxes and i != 0:
+            return False
+    return True
