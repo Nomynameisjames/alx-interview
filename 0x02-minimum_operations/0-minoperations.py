@@ -7,8 +7,9 @@
 '''
 
 
-def minOperations(n: int) -> int:
-    ''' Method that calculates the fewest number of operations
+def minOperations(n) -> int:
+    ''' 
+        Method calculates the fewest number of operations
         needed to result in exactly n H characters in the file.
     '''
     spy = 0  # spy keeps track of the number of operations
