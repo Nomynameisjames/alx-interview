@@ -28,4 +28,5 @@ def minOperations(n) -> int:
         while n % i == 0:
             spy = spy + i
             n = n // i
+
     return spy
