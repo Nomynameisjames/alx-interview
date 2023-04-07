@@ -1,6 +1,6 @@
                                          Minimum Operations Algorithm in Python
 
-Minimum Operations algorithm is used to ascertain  the least number of operations needed to convert a string into another
+Minimum Operations algorithm is used to ascertain  the least number of operations needed to convert a string into another.
 operation in this case can take a CRUD functionality that involve creating a new character to the string, updating a character
 from the string or deleting a character from the string.
 
