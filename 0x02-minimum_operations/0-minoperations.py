@@ -26,6 +26,6 @@ def minOperations(n) -> int:
     '''
     for i in range(2, n + 1):
         while n % i == 0:
-            spy += i
-            n /= i
+            spy = spy + i
+            n = n // i
     return spy
