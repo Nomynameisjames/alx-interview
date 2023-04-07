@@ -12,12 +12,18 @@ def minOperations(n) -> int:
         Method calculates the fewest number of operations
         needed to result in exactly n H characters in the file.
     '''
-    # spy keeps track of the number of operations
+    '''
+        spy keeps track of the number of operations
+    '''
     spy = 0
-    # If n is impossible to achieve, return 0
+    '''
+        If n is impossible to achieve, return 0
+    '''
     if n <= 1:
         return 0
-    # find factors of n
+    '''
+        find factors of n
+    '''
     for i in range(2, n + 1):
         while n % i == 0:
             spy = spy + i
