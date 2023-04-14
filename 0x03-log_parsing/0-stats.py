@@ -37,20 +37,21 @@ def print_stats():
                 file_size = line[-1]
                 status = line[-2]
                 # check if status code is in dictionary
-                if status in status_codes:
-                    status_codes[status] += 1
-                # check if the file size is a number
-                if re.search(r'\d', file_size):
-                    total_size += int(file_size)
-                count += 1
-                # if count is 10, print the stats
-                if count % 10 == 0:
-                    print(f"File size: {total_size}")
-                    for key, value in sorted(status_codes.items()):
-                        if value != 0:
-                            print(f"{key} : {value}")
-            else:
-                continue
+                if file_size and status is not None:
+                    if status in status_codes:
+                        status_codes[status] += 1
+                    # check if the file size is a number
+                    if re.search(r'\d', file_size):
+                        total_size += int(file_size)
+                    count += 1
+                    # if count is 10, print the stats
+                    if count % 10 == 0:
+                        print(f"File size: {total_size}")
+                        for key, value in sorted(status_codes.items()):
+                            if value != 0:
+                                print(f"{key} : {value}")
+                    else:
+                        continue
 
     except KeyboardInterrupt:
         # if user lresses CTRL + C, print stats
