@@ -1,14 +1,21 @@
-#!/usr/bin/env python3
-''' import sys to get stdin
-    import re to use regex
-'''
+#!/usr/bin/python3
+''' import files'''
 import sys
 import re
 
 '''
-   script that reads stdin line by line and computes metrics:
-   After every 10 lines and/or a keyboard interruption (CTRL + C),
-   print these statistics from the beginning
+    basic summary of the log_parser algorithm
+    1. read input from stdin
+    2. split line into array using split
+    3. get file size and status code
+    based on this format [IP Address] - [user] [date] "GET /projects/260
+                            HTTP/1.1" [status code] [file size]
+    4. check if status code is in dictionary
+    5. if true, increment the value by 1
+    6. check if the file size is a number
+    7. if true, add to total size
+    8. if count is 10, print the stats
+    9. if user presses CTRL + C, print stats
 '''
 
 
@@ -41,7 +48,7 @@ def print_stats():
                     print(f"File size: {total_size}")
                     for key, value in sorted(status_codes.items()):
                         if value != 0:
-                            print(f"{key} : {value}")
+                            print(f"{key}: {value}")
 
     except KeyboardInterrupt:
         # if user lresses CTRL + C, print stats
@@ -52,19 +59,5 @@ def print_stats():
         raise
 
 
-'''
-    basic summary of the log_parser algorithm
-    1. read input from stdin
-    2. split line into array using split
-    3. get file size and status code
-    based on this format [IP Address] - [user] [date] "GET /projects/260
-                            HTTP/1.1" [status code] [file size]
-    4. check if status code is in dictionary
-    5. if true, increment the value by 1
-    6. check if the file size is a number
-    7. if true, add to total size
-    8. if count is 10, print the stats
-    9. if user presses CTRL + C, print stats
-'''
 if __name__ == "__main__":
     print_stats()
