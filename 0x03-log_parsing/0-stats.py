@@ -48,7 +48,7 @@ def print_stats():
                     print(f"File size: {total_size}")
                     for key, value in sorted(status_codes.items()):
                         if value != 0:
-                            print(f"{key}: {value}")
+                            print(f"{key} : {value}")
 
     except KeyboardInterrupt:
         # if user lresses CTRL + C, print stats
