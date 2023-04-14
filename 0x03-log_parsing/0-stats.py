@@ -49,6 +49,8 @@ def print_stats():
                     for key, value in sorted(status_codes.items()):
                         if value != 0:
                             print(f"{key} : {value}")
+            else:
+                continue
 
     except KeyboardInterrupt:
         # if user lresses CTRL + C, print stats
