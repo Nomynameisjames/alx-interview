@@ -24,30 +24,19 @@ def print_stats():
     count = 0
     try:
         for line in sys.stdin:
-            '''
-                split line into array using split
-                and regex to get file size
-            '''
+            # split line into array using split
             line = line.split()
             if len(line) > 2:
                 file_size = line[-1]
                 status = line[-2]
-                '''
-                    check if status code is in dictionary
-                    if true, increment the value by 1
-                '''
+                # check if status code is in dictionary
                 if status in status_codes:
                     status_codes[status] += 1
-                '''
-                    check if the file size is a number
-                    if teure, add to total size
-                '''
+                # check if the file size is a number
                 if re.search(r'\d', file_size):
                     total_size += int(file_size)
                 count += 1
-                '''
-                    if count is 10, print the stats
-                '''
+                # if count is 10, print the stats
                 if count % 10 == 0:
                     print(f"File size: {total_size}")
                     for key, value in sorted(status_codes.items()):
@@ -55,9 +44,7 @@ def print_stats():
                             print(f"{key} : {value}")
 
     except KeyboardInterrupt:
-        '''
-            if user lresses CTRL + C, print stats
-        '''
+        # if user lresses CTRL + C, print stats
         print(f"File size: {total_size}")
         for key, value in sorted(status_codes.items()):
             if value != 0:
