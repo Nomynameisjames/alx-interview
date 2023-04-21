@@ -1,11 +1,5 @@
 #!/usr/bin/python3
 """
-   a method that determines if a given data set represents a valid
-   UTF-8 encoding.
-"""
-
-
-"""
     objectives:
         Prototype: def validUTF8(data)
     1-  if data is a valid UTF-8 encoding
@@ -64,5 +58,4 @@ def validUTF8(data):
                 return False
 
         N_Bytes -= 1
-
     return N_Bytes == 0
