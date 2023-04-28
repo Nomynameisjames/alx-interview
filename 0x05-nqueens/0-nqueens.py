@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """ import files """
 import sys
-from typing import List
 """
     N queens problem is the challenge of placing N non-attacking queens on
     an N×N chessboard.
@@ -40,7 +39,7 @@ if N < 4:
     objective 3
     creates a list of length n with each element initialized to -1
 """
-chessboard: List[int] = [-1 for i in range(N)]
+chessboard = [-1 for i in range(N)]
 
 
 def safe_spot(row: int, col: int) -> bool:
