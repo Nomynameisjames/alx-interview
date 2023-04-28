@@ -61,7 +61,7 @@ def print_board() -> None:
     print([[i, chessboard[i]] for i in range(N)])
 
 
-def solution(row: int) -> None:
+def nqueens(row: int) -> None:
     """
         solves the board by backtracking
         what is backtracking?
@@ -80,10 +80,10 @@ def solution(row: int) -> None:
             """ place queen """
             chessboard[row] = col
             """ move to next row """
-            solution(row + 1)
+            nqueens(row + 1)
             """ if no solution is found, backtrack """
         chessboard[row] = -1
 
 
 if __name__ == "__main__":
-    solution(0)
+    nqueens(0)
