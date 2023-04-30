@@ -1,82 +1,79 @@
 #!/usr/bin/python3
 """ import files """
 import sys
-"""
-    N queens problem is the challenge of placing N non-attacking queens on
-    an N×N chessboard.
-    Objectives:
-    1- If user calle program with wrong number of args
-            print Usage: nqueens N, followed by a new line, exit
-            with the status 1
-    2- while int(N) >= 4
-            If N is not an int
-                print N must be a number, followed by a new line,
-                exit with the status 1
-            elIf N is smaller than 4
-                print N must be at least 4, followed by a new line,
-                exit with the status 1
-    3- print every possible solution to the problem followed by a new line
-"""
-
-""" objective 1 """
-if len(sys.argv) != 2:
-    print("Usage: nqueens N")
-    exit(1)
-
-""" objective 2 """
-try:
-    N: int = int(sys.argv[1])
-except ValueError:
-    print("N must be a number")
-    exit(1)
-
-""" objective 2 """
-if N < 4:
-    print("N must be at least 4")
-    exit(1)
 
 """
-    objective 3
-    creates a list of length n with each element initialized to -1
+    N-Queens Problem
+    The N-Queens problem is the problem of placing N chess queens on an N x N
+    chessboard so that no two queens threaten each other. a solution requires
+    that no two queens share the same row, column, or diagonal.
 """
-chessboard = [-1 for i in range(N)]
 
 
-def safe_spot(row: int, col: int) -> bool:
+class NQueensSolver:
     """
-        checks if a spot is safe by checking if there is a queen in the same
-        column or diagonal
+        class that solves the NQueens problem
     """
-    for i in range(row):
-        if chessboard[i] == col or abs(chessboard[i] - col) == abs(i - row):
-            return False
-    return True
+    def __init__(self, n: int):
+        self.n = n
+        self.chessboard = [-1 for i in range(n)]
+
+    def solve(self):
+        self.nqueens(0)
+
+    def safe_spot(self, row: int, col: int) -> bool:
+        """
+            Checks if a spot is safe by checking if there is a queen in the
+            same column or diagonal
+        """
+        for i in range(row):
+            if self.chessboard[i] == col or abs(self.chessboard[i] - col)\
+                    == abs(i - row):
+                return False
+        return True
+
+    def print_board(self) -> None:
+        """
+            Prints the board in a nested lists format
+        """
+        print([[i, self.chessboard[i]] for i in range(self.n)])
+
+    def nqueens(self, row: int) -> None:
+        """
+            Solves the NQueens problem recursively using backtracking
+        """
+        if row == self.n:
+            self.print_board()
+            return
+
+        for col in range(self.n):
+            if self.safe_spot(row, col):
+                self.chessboard[row] = col
+                self.nqueens(row + 1)
+                self.chessboard[row] = -1
 
 
-def print_board() -> None:
+def main(args: list):
     """
-        prints the board in a nested lists format
+        Main function
     """
-    # global chessboard
-    print([[i, chessboard[i]] for i in range(N)])
+    if len(args) != 2:
+        print("Usage: nqueens N")
+        return 1
+
+    try:
+        n = int(args[1])
+    except ValueError:
+        print("N must be a number")
+        return 1
+
+    if n < 4:
+        print("N must be at least 4")
+        return 1
+
+    solver = NQueensSolver(n)
+    solver.solve()
 
 
-def nqueens(row: int) -> None:
-    # global chessboard
-    """ base case """
-    if row == N:
-        print_board()
-        return
-    for col in range(N):
-        """ check if spot is safe """
-        if safe_spot(row, col):
-            """ place queen """
-            chessboard[row] = col
-            """ move to next row """
-            nqueens(row + 1)
-            """ if no solution is found, backtrack """
-        chessboard[row] = -1
-
-
-if __name__ == "__main__":
-    nqueens(0)
+if __name__ == '__main__':
+    sys.exit(main(sys.argv))
