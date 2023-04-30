@@ -57,12 +57,12 @@ def print_board() -> None:
     """
         prints the board in a nested lists format
     """
-    global chessboard
+    #global chessboard
     print([[i, chessboard[i]] for i in range(N)])
 
 
 def nqueens(row: int) -> None:
-    global chessboard
+    #global chessboard
     """ base case """
     if row == N:
         print_board()
