@@ -62,13 +62,6 @@ def print_board() -> None:
 
 
 def nqueens(row: int) -> None:
-    """
-        solves the board by backtracking
-        what is backtracking?
-        this is a way to solve problems by trying out different options,
-        and when you find that an option doesn't work, you backtrack to try a
-        different option
-    """
     global chessboard
     """ base case """
     if row == N:
