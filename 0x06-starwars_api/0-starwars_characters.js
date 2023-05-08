@@ -24,12 +24,11 @@ request(url, function (err, response, body) {
               reject(err);
             } else {
               resolve(JSON.parse(body).name);
-              
             }
           });
         });
-	      const response = await promiseObj;
-	      console.log(response);
+        const response = await promiseObj;
+        console.log(response);
       }
     };
     fetchCharacters();
