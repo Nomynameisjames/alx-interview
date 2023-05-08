@@ -16,14 +16,22 @@ request(url, function (err, response, body) {
     console.log(err);
   } else {
     const characters = JSON.parse(body).characters;
-    for (const character of characters) {
-      request(character, function (err, response, body) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log(JSON.parse(body).name);
-        }
-      });
-    }
+    const fetchCharacters = async () => {
+      for (const character of characters) {
+        const promiseObj = new Promise((resolve, reject) => {
+          request(character, function (err, response, body) {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(JSON.parse(body).name);
+              
+            }
+          });
+        });
+	      const response = await promiseObj;
+	      console.log(response);
+      }
+    };
+    fetchCharacters();
   }
 });
