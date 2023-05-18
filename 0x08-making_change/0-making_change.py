@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-from typing import List
 """
     Prototype:
             def makeChange(coins, total)
@@ -15,7 +14,7 @@ from typing import List
 """
 
 
-def makeChange(coins: List, total: int) -> int:
+def makeChange(coins: list, total: int) -> int:
     """
         determine the fewest number of coins needed to meet a given amount
         total.
